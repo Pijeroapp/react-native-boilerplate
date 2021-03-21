@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['airbnb', 'prettier'],
+  extends: ['airbnb'],
   plugins: ['react', 'react-native', 'react-hooks', 'prettier'],
   parser: 'babel-eslint',
   env: {
@@ -20,9 +20,18 @@ module.exports = {
     'react-native/no-color-literals': 2,
     'react-native/no-raw-text': 2,
     'linebreak-style': 0,
-    'object-curly-newline': 'never',
+    'import/prefer-default-export': 'off',
+    'import/extensions': 'off',
   },
   globals: {
     fetch: false,
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['/'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', 'd.ts'],
+      },
+    },
   },
 };
