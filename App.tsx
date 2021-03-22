@@ -1,40 +1,17 @@
 import React from 'react';
-
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
-
 import { StyleSheet, Text, View } from 'react-native';
-import { API } from './constants';
+
+import { getTodos } from './api/queries/todos.query';
+import { Todo } from './models';
+import Form from './components/Form';
 
 const queryClient = new QueryClient();
 
-type Todo = {
-  id: number;
-  title: string;
-  isFinished: boolean;
-};
-
-type Params = {
-  queryKey: [string, { id: number }];
-};
-
-async function getTodo(params: Params) {
-  const [, { id }] = params.queryKey;
-
-  const response = await fetch(`${API.ROUTES.TODOS}/${id}`);
-
-  if (!response.ok) {
-    throw new Error('Problem fetching data');
-  }
-
-  const todo = await response.json();
-
-  return todo;
-}
-
-const Character = () => {
-  const { status, error, data } = useQuery<Todo, Error>(
-    ['todo', { id: 1 }],
-    getTodo,
+const TodoList = () => {
+  const { status, error, data } = useQuery<Todo, Error, Todo[]>(
+    'todos',
+    getTodos,
   );
 
   if (status === 'loading') {
@@ -45,14 +22,25 @@ const Character = () => {
     return <Text>{error?.message}</Text>;
   }
 
-  return data ? <Text>{data.title}</Text> : null;
+  if (data) {
+    return (
+      <>
+        <Text>list:</Text>
+        {data?.map((item: Todo) => (
+          <Text key={item.id}>{item.title}</Text>
+        ))}
+      </>
+    );
+  }
+  return null;
 };
 
 export default function App() {
   return (
     <View style={styles.container}>
       <QueryClientProvider client={queryClient}>
-        <Character />
+        <TodoList />
+        <Form />
       </QueryClientProvider>
     </View>
   );

@@ -1,6 +1,14 @@
 {
   "todos": [
-    { "id": 0, "title": "take out trash", "isFinished": false },
-    { "id": 1, "title": "walk a dog", "isFinished": false }
+    {
+      "id": 0,
+      "title": "take out trash",
+      "isFinished": false
+    },
+    {
+      "id": 1,
+      "title": "walk a dog",
+      "isFinished": false
+    }
   ]
 }
