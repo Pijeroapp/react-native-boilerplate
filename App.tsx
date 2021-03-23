@@ -1,14 +1,31 @@
 import React from 'react';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useMutation,
+  useQuery,
+} from 'react-query';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { getTodos } from './api/queries/todos.query';
+import { removeTodo } from './api/mutations/todo.mutation';
+
 import { Todo } from './models';
 import Form from './components/Form';
 
 const queryClient = new QueryClient();
 
 const TodoList = () => {
+  const formMutation = useMutation(removeTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('todos');
+    },
+  });
+
+  const handleClick = (todo: Todo) => {
+    formMutation.mutate(todo);
+  };
+
   const { status, error, data } = useQuery<Todo, Error, Todo[]>(
     'todos',
     getTodos,
@@ -26,8 +43,10 @@ const TodoList = () => {
     return (
       <>
         <Text>list:</Text>
-        {data?.map((item: Todo) => (
-          <Text key={item.id}>{item.title}</Text>
+        {data?.map((todo: Todo) => (
+          <Text key={todo.id} onPress={() => handleClick(todo)}>
+            {todo.title}
+          </Text>
         ))}
       </>
     );

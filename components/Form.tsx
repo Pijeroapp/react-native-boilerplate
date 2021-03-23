@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import {
   View,
@@ -9,35 +10,17 @@ import {
   Button,
 } from 'react-native';
 import { useMutation, useQueryClient } from 'react-query';
+
 import { colors } from '../style';
-import { API } from '../constants';
-import { Todo } from '../models';
+import { addTodo } from '../api/mutations/todo.mutation';
 
 const Form = () => {
   const [title, setTitle] = useState('');
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const [isFinished, setIsFinished] = useState(false);
+  const toggleSwitch = () => setIsFinished((previousState) => !previousState);
   const queryClient = useQueryClient();
 
-  const postTodo = async (todo: Todo) => {
-    try {
-      await fetch(`${API.ROUTES.TODOS}`, {
-        method: 'POST',
-        body: JSON.stringify({
-          id: todo.id,
-          title: todo.title,
-          isFinished: todo.isFinished,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-    } catch (error) {
-      throw new Error(error);
-    }
-  };
-
-  const formMutation = useMutation(postTodo, {
+  const formMutation = useMutation(addTodo, {
     onSuccess: () => {
       queryClient.invalidateQueries('todos');
     },
@@ -46,9 +29,9 @@ const Form = () => {
   const onSubmit = (e: any) => {
     e.preventDefault();
     formMutation.mutate({
-      id: 0,
+      id: uuidv4(),
       title,
-      isFinished: isEnabled,
+      isFinished,
     });
   };
   return (
@@ -63,10 +46,10 @@ const Form = () => {
         <Text>Have you finished this task?</Text>
         <Switch
           trackColor={{ false: '#767577', true: '#81b0ff' }}
-          thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+          thumbColor={isFinished ? '#f5dd4b' : '#f4f3f4'}
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
-          value={isEnabled}
+          value={isFinished}
         />
       </View>
       <Button

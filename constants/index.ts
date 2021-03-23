@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://f2bb340f2e55.ngrok.io';
+const API_BASE_URL = 'https://18b30fd5c4b0.ngrok.io';
 
 export const API = {
   ROUTES: {
