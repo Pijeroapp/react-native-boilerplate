@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { useMutation, useQueryClient } from 'react-query';
 
-import { colors } from '../style';
+import { colors } from '../styles';
 import { addTodo } from '../api/mutations/todo.mutation';
 
 const Form = () => {

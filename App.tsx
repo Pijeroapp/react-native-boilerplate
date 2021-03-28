@@ -1,77 +1,44 @@
-import React from 'react';
-import {
-  QueryClient,
-  QueryClientProvider,
-  useMutation,
-  useQuery,
-} from 'react-query';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
 
-import { getTodos } from './api/queries/todos.query';
-import { removeTodo } from './api/mutations/todo.mutation';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import * as Localization from 'expo-localization';
+import i18n from 'i18n-js';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
 
-import { Todo } from './models';
-import Form from './components/Form';
+import * as EN_USD_TRANSLATIONS from './translations/en-US.json';
+import * as LT_LT_TRANSLATIONS from './translations/lt-LT.json';
+
+import { HomeScreen } from './screens/Home.screen';
+import { TodoListScreen } from './screens/TodoList.screen';
+import { SCREEN } from './constants';
+
+// Set the key-value pairs for the different languages you want to support.
+i18n.translations = {
+  'en-US': EN_USD_TRANSLATIONS,
+  'lt-LT': LT_LT_TRANSLATIONS,
+};
+// Set the locale once at the beginning of your app.
+i18n.locale = Localization.locale;
+
+i18n.fallbacks = true;
 
 const queryClient = new QueryClient();
 
-const TodoList = () => {
-  const formMutation = useMutation(removeTodo, {
-    onSuccess: () => {
-      queryClient.invalidateQueries('todos');
-    },
-  });
-
-  const handleClick = (todo: Todo) => {
-    formMutation.mutate(todo);
-  };
-
-  const { status, error, data } = useQuery<Todo, Error, Todo[]>(
-    'todos',
-    getTodos,
-  );
-
-  if (status === 'loading') {
-    return <Text>Loading...</Text>;
-  }
-
-  if (status === 'error') {
-    return <Text>{error?.message}</Text>;
-  }
-
-  if (data) {
-    return (
-      <>
-        <Text>list:</Text>
-        {data?.map((todo: Todo) => (
-          <Text key={todo.id} onPress={() => handleClick(todo)}>
-            {todo.title}
-          </Text>
-        ))}
-      </>
-    );
-  }
-  return null;
-};
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <QueryClientProvider client={queryClient}>
-        <TodoList />
-        <Form />
-      </QueryClientProvider>
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer>
+        <Drawer.Navigator initialRouteName={SCREEN.ROUTES.HOME}>
+          <Drawer.Screen name={SCREEN.ROUTES.HOME} component={HomeScreen} />
+          <Drawer.Screen
+            name={SCREEN.ROUTES.TODO_LIST}
+            component={TodoListScreen}
+          />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </QueryClientProvider>
   );
 }
-
-const color = '#fff';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: color,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
