@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
-import { QueryClient, useMutation, useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { removeTodo } from '../api/mutations/todo.mutation';
 import { getTodos } from '../api/queries/todos.query';
 import { Todo } from '../models';
 import { styles } from '../styles';
 
-const queryClient = new QueryClient();
-
 const TodoList = () => {
+  const queryClient = useQueryClient();
+
   const formMutation = useMutation(removeTodo, {
     onSuccess: () => {
       queryClient.invalidateQueries('todos');

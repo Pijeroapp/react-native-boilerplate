@@ -11,7 +11,7 @@ import * as LT_LT_TRANSLATIONS from './translations/lt-LT.json';
 
 import { HomeScreen } from './screens/Home.screen';
 import { TodoListScreen } from './screens/TodoList.screen';
-import { SCREEN } from './constants';
+import { TodoFormScreen } from './screens/TodoForm.screen';
 
 // Set the key-value pairs for the different languages you want to support.
 i18n.translations = {
@@ -31,12 +31,10 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
-        <Drawer.Navigator initialRouteName={SCREEN.ROUTES.HOME}>
-          <Drawer.Screen name={SCREEN.ROUTES.HOME} component={HomeScreen} />
-          <Drawer.Screen
-            name={SCREEN.ROUTES.TODO_LIST}
-            component={TodoListScreen}
-          />
+        <Drawer.Navigator initialRouteName={i18n.t('home')}>
+          <Drawer.Screen name={i18n.t('home')} component={HomeScreen} />
+          <Drawer.Screen name={i18n.t('todoList')} component={TodoListScreen} />
+          <Drawer.Screen name={i18n.t('todoForm')} component={TodoFormScreen} />
         </Drawer.Navigator>
       </NavigationContainer>
     </QueryClientProvider>
