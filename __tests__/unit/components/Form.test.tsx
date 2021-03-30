@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import Form from '../../components/Form';
+import Form from '../../../components/Form';
 
 const queryClient = new QueryClient();
 

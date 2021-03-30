@@ -12,6 +12,7 @@ import * as LT_LT_TRANSLATIONS from './translations/lt-LT.json';
 import { HomeScreen } from './screens/Home.screen';
 import { TodoListScreen } from './screens/TodoList.screen';
 import { TodoFormScreen } from './screens/TodoForm.screen';
+import { Button, View } from 'react-native';
 
 // Set the key-value pairs for the different languages you want to support.
 i18n.translations = {
@@ -30,14 +31,22 @@ const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <NavigationContainer>
-        <Drawer.Navigator initialRouteName={i18n.t('home')}>
-          <Drawer.Screen name={i18n.t('home')} component={HomeScreen} />
-          <Drawer.Screen name={i18n.t('todoList')} component={TodoListScreen} />
-          <Drawer.Screen name={i18n.t('todoForm')} component={TodoFormScreen} />
-        </Drawer.Navigator>
-      </NavigationContainer>
-    </QueryClientProvider>
+    <View>
+      <QueryClientProvider client={queryClient}>
+        <NavigationContainer>
+          <Drawer.Navigator initialRouteName={i18n.t('home')}>
+            <Drawer.Screen name={i18n.t('home')} component={HomeScreen} />
+            <Drawer.Screen
+              name={i18n.t('todoList')}
+              component={TodoListScreen}
+            />
+            <Drawer.Screen
+              name={i18n.t('todoForm')}
+              component={TodoFormScreen}
+            />
+          </Drawer.Navigator>
+        </NavigationContainer>
+      </QueryClientProvider>
+    </View>
   );
 }
