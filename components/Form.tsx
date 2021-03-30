@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import i18n from 'i18n-js';
 
 import {
   View,
@@ -40,10 +41,10 @@ const Form = () => {
         style={styles.input}
         onChangeText={setTitle}
         value={title}
-        placeholder="Todo title"
+        placeholder={i18n.t('todoTitle')}
       />
       <View style={styles.checkboxContainer}>
-        <Text>Have you finished this task?</Text>
+        <Text>{i18n.t('haveYouFinishedTheTask')}</Text>
         <Switch
           trackColor={{ false: '#767577', true: '#81b0ff' }}
           thumbColor={isFinished ? '#f5dd4b' : '#f4f3f4'}
@@ -54,7 +55,7 @@ const Form = () => {
       </View>
       <Button
         onPress={onSubmit}
-        title="Submit"
+        title={i18n.t('submit')}
         color={colors.primary.default}
         accessibilityLabel="Learn more about this purple button"
       />

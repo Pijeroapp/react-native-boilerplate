@@ -2,5 +2,9 @@
   "welcome": "Welcome",
   "home": "Home",
   "todoList": "Todo list",
-  "todoForm": "Todo form"
+  "todoForm": "Todo form",
+  "todoTitle": "Todo title",
+  "haveYouFinishedTheTask": "Have you finished the task?",
+  "submit": "Submit",
+  "loading": "Loading..."
 }

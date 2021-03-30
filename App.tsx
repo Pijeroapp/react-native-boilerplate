@@ -17,6 +17,7 @@ import { TodoFormScreen } from './screens/TodoForm.screen';
 i18n.translations = {
   'en-US': EN_USD_TRANSLATIONS,
   'lt-LT': LT_LT_TRANSLATIONS,
+  'en-LT': EN_USD_TRANSLATIONS,
 };
 // Set the locale once at the beginning of your app.
 i18n.locale = Localization.locale;

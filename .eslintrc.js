@@ -22,6 +22,7 @@ module.exports = {
     'linebreak-style': 0,
     'import/prefer-default-export': 'off',
     'import/extensions': 'off',
+    'react/jsx-one-expression-per-line': 'off',
   },
   globals: {
     fetch: false,

@@ -2,5 +2,9 @@
   "welcome": "Sveiki",
   "home": "Pradžia",
   "todoList": "Darbų sąrąšas",
-  "todoForm": "Darbų forma"
+  "todoForm": "Darbų forma",
+  "todoTitle": "Darbo pavadinimas",
+  "haveYouFinishedTheTask": "Ar užduotis užbaigta?",
+  "submit": "Patvirtinti",
+  "loading": "Kraunama..."
 }
