@@ -7,6 +7,7 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "lint": "eslint *.js **/*.js *.tsx **/*.tsx  **/*.ts",
+    "unit-test": "jest",
     "mock-api": "json-server --watch mock-api/db.json"
   },
   "dependencies": {
@@ -34,9 +35,11 @@
   "devDependencies": {
     "@babel/core": "~7.9.0",
     "@types/i18n-js": "^3.8.0",
-    "@types/react": "~16.9.35",
+    "@types/jest": "^26.0.22",
+    "@types/react": "^16.9.56",
     "@types/react-dom": "~16.9.8",
     "@types/react-native": "~0.63.2",
+    "@types/react-test-renderer": "^17.0.1",
     "@types/uuid": "^8.3.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.22.0",
@@ -48,7 +51,11 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-react-native": "^3.10.0",
+    "jest-expo": "^40.0.2",
     "typescript": "~4.0.0"
   },
-  "private": true
+  "private": true,
+  "jest": {
+    "preset": "jest-expo"
+  }
 }
