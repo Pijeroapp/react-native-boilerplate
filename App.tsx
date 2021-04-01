@@ -3,7 +3,9 @@ import * as React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons, AntDesign } from '@expo/vector-icons';
+
 import { NavigationContainer } from '@react-navigation/native';
 
 import * as EN_USD_TRANSLATIONS from './translations/en-US.json';
@@ -12,7 +14,7 @@ import * as LT_LT_TRANSLATIONS from './translations/lt-LT.json';
 import { HomeScreen } from './screens/Home.screen';
 import { TodoListScreen } from './screens/TodoList.screen';
 import { TodoFormScreen } from './screens/TodoForm.screen';
-import { Button, View } from 'react-native';
+import { colors } from './styles';
 
 // Set the key-value pairs for the different languages you want to support.
 i18n.translations = {
@@ -27,26 +29,39 @@ i18n.fallbacks = true;
 
 const queryClient = new QueryClient();
 
-const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View>
-      <QueryClientProvider client={queryClient}>
-        <NavigationContainer>
-          <Drawer.Navigator initialRouteName={i18n.t('home')}>
-            <Drawer.Screen name={i18n.t('home')} component={HomeScreen} />
-            <Drawer.Screen
-              name={i18n.t('todoList')}
-              component={TodoListScreen}
-            />
-            <Drawer.Screen
-              name={i18n.t('todoForm')}
-              component={TodoFormScreen}
-            />
-          </Drawer.Navigator>
-        </NavigationContainer>
-      </QueryClientProvider>
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ color, size }) => {
+              switch (route.name) {
+                case i18n.t('home'):
+                  return <Ionicons name={'home'} size={size} color={color} />;
+                case i18n.t('todoList'):
+                  return <Ionicons name={'list'} size={size} color={color} />;
+                case i18n.t('todoForm'):
+                  return <AntDesign name={'form'} size={size} color={color} />;
+                default:
+                  return (
+                    <Ionicons name={undefined} size={size} color={color} />
+                  );
+              }
+            },
+          })}
+          tabBarOptions={{
+            activeTintColor: colors.primary.default,
+            inactiveTintColor: 'gray',
+          }}
+        >
+          <Tab.Screen name={i18n.t('home')} component={HomeScreen} />
+          <Tab.Screen name={i18n.t('todoList')} component={TodoListScreen} />
+          <Tab.Screen name={i18n.t('todoForm')} component={TodoFormScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </QueryClientProvider>
   );
 }
