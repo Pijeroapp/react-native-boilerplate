@@ -1,0 +1,13 @@
+{
+  "baseUrl": "http://localhost:19006/",
+  "fixturesFolder": "__tests__/fixtures",
+  "integrationFolder": "__tests__/e2e",
+  "supportFile": "__tests__/e2e/commands.js",
+  "pluginsFile": false,
+  "screenshotsFolder": "tests/screenshots",
+  "videosFolder": "tests/videos",
+  "video": false,
+  "trashAssetsBeforeRuns": true,
+  "viewportWidth": 375,
+  "viewportHeight": 667
+}
