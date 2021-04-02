@@ -6,7 +6,7 @@ import { styles } from '../styles';
 
 export const TodoListScreen = () => {
   return (
-    <View style={styles.containerCentered}>
+    <View style={styles.containerCentered} testID="todo-list-screen">
       <TodoList />
     </View>
   );

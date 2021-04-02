@@ -42,6 +42,7 @@ const Form = () => {
         onChangeText={setTitle}
         value={title}
         placeholder={i18n.t('todoTitle', { defaultValue: 'Todo title' })}
+        testID="task-input"
       />
       <View style={styles.checkboxContainer}>
         <Text>
@@ -55,13 +56,14 @@ const Form = () => {
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
           value={isFinished}
+          testID="task-switch"
         />
       </View>
       <Button
         onPress={onSubmit}
         title={i18n.t('submit', { defaultValue: 'Submit' })}
         color={colors.primary.default}
-        accessibilityLabel="Learn more about this purple button"
+        testID="submit-btn"
       />
     </View>
   );

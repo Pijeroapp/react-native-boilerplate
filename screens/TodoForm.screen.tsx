@@ -5,7 +5,7 @@ import { styles } from '../styles';
 
 export const TodoFormScreen = () => {
   return (
-    <View style={styles.containerCentered}>
+    <View style={styles.containerCentered} testID="todo-form-screen">
       <Form />
     </View>
   );
