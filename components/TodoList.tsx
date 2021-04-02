@@ -26,7 +26,7 @@ const TodoList = () => {
   );
 
   if (status === 'loading') {
-    return <Text>{i18n.t('loading')}</Text>;
+    return <Text>{i18n.t('loading', { defaultValue: 'Loading' })}</Text>;
   }
 
   if (status === 'error') {
@@ -36,7 +36,7 @@ const TodoList = () => {
   if (data) {
     return (
       <>
-        <Text>{i18n.t('todoList')}:</Text>
+        <Text>{i18n.t('todoList', { defaultValue: 'Todo list' })}:</Text>
         {data?.map((todo: Todo) => (
           <Text key={todo.id} onPress={() => handleClick(todo)}>
             {todo.title}

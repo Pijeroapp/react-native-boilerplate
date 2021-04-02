@@ -7,7 +7,7 @@ import { styles } from '../styles';
 export const HomeScreen = () => {
   return (
     <View style={styles.containerCentered} data-test="home-screen">
-      <Text>{i18n.t('welcome')}</Text>
+      <Text>{i18n.t('welcome', { defaultValue: 'Welcome' })}</Text>
     </View>
   );
 };

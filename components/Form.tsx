@@ -41,10 +41,14 @@ const Form = () => {
         style={styles.input}
         onChangeText={setTitle}
         value={title}
-        placeholder={i18n.t('todoTitle')}
+        placeholder={i18n.t('todoTitle', { defaultValue: 'Todo title' })}
       />
       <View style={styles.checkboxContainer}>
-        <Text>{i18n.t('haveYouFinishedTheTask')}</Text>
+        <Text>
+          {i18n.t('haveYouFinishedTheTask', {
+            defaultValue: 'Have you finished the task?',
+          })}
+        </Text>
         <Switch
           trackColor={{ false: '#767577', true: '#81b0ff' }}
           thumbColor={isFinished ? '#f5dd4b' : '#f4f3f4'}
@@ -55,7 +59,7 @@ const Form = () => {
       </View>
       <Button
         onPress={onSubmit}
-        title={i18n.t('submit')}
+        title={i18n.t('submit', { defaultValue: 'Submit' })}
         color={colors.primary.default}
         accessibilityLabel="Learn more about this purple button"
       />

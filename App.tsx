@@ -20,7 +20,6 @@ import { colors } from './styles';
 i18n.translations = {
   'en-US': EN_USD_TRANSLATIONS,
   'lt-LT': LT_LT_TRANSLATIONS,
-  'en-LT': EN_USD_TRANSLATIONS,
 };
 // Set the locale once at the beginning of your app.
 i18n.locale = Localization.locale;
@@ -39,11 +38,11 @@ export default function App() {
           screenOptions={({ route }) => ({
             tabBarIcon: ({ color, size }) => {
               switch (route.name) {
-                case i18n.t('home'):
+                case i18n.t('home', { defaultValue: 'Home' }):
                   return <Ionicons name={'home'} size={size} color={color} />;
-                case i18n.t('todoList'):
+                case i18n.t('todoList', { defaultValue: 'Todo list' }):
                   return <Ionicons name={'list'} size={size} color={color} />;
-                case i18n.t('todoForm'):
+                case i18n.t('todoForm', { defaultValue: 'Todo form' }):
                   return <AntDesign name={'form'} size={size} color={color} />;
                 default:
                   return (
@@ -57,9 +56,18 @@ export default function App() {
             inactiveTintColor: 'gray',
           }}
         >
-          <Tab.Screen name={i18n.t('home')} component={HomeScreen} />
-          <Tab.Screen name={i18n.t('todoList')} component={TodoListScreen} />
-          <Tab.Screen name={i18n.t('todoForm')} component={TodoFormScreen} />
+          <Tab.Screen
+            name={i18n.t('home', { defaultValue: 'Home' })}
+            component={HomeScreen}
+          />
+          <Tab.Screen
+            name={i18n.t('todoList', { defaultValue: 'Todo list' })}
+            component={TodoListScreen}
+          />
+          <Tab.Screen
+            name={i18n.t('todoForm', { defaultValue: 'Todo form' })}
+            component={TodoFormScreen}
+          />
         </Tab.Navigator>
       </NavigationContainer>
     </QueryClientProvider>
