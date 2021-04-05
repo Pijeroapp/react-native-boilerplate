@@ -6,5 +6,6 @@
   "todoTitle": "Todo title",
   "haveYouFinishedTheTask": "Have you finished the task?",
   "submit": "Submit",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "notification": "Notification"
 }

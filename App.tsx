@@ -15,6 +15,7 @@ import * as LT_LT_TRANSLATIONS from './translations/lt-LT.json';
 import { HomeScreen } from './screens/Home.screen';
 import { TodoListScreen } from './screens/TodoList.screen';
 import { TodoFormScreen } from './screens/TodoForm.screen';
+import { PushNotificationScreen } from './screens/PushNotification.screen';
 import { colors } from './styles';
 
 // Set the key-value pairs for the different languages you want to support.
@@ -47,6 +48,14 @@ export default function App() {
                   return <Ionicons name={'list'} size={size} color={color} />;
                 case i18n.t('todoForm', { defaultValue: 'Todo form' }):
                   return <AntDesign name={'form'} size={size} color={color} />;
+                case i18n.t('notification', { defaultValue: 'Notification' }):
+                  return (
+                    <AntDesign
+                      name={'notification'}
+                      size={size}
+                      color={color}
+                    />
+                  );
                 default:
                   return (
                     <Ionicons name={undefined} size={size} color={color} />
@@ -74,6 +83,10 @@ export default function App() {
           <Tab.Screen
             name={i18n.t('todoForm', { defaultValue: 'Todo form' })}
             component={TodoFormScreen}
+          />
+          <Tab.Screen
+            name={i18n.t('notification', { defaultValue: 'Notification' })}
+            component={PushNotificationScreen}
           />
         </Tab.Navigator>
       </NavigationContainer>

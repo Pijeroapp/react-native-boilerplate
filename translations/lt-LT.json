@@ -6,5 +6,6 @@
   "todoTitle": "Darbo pavadinimas",
   "haveYouFinishedTheTask": "Ar užduotis užbaigta?",
   "submit": "Patvirtinti",
-  "loading": "Kraunama..."
+  "loading": "Kraunama...",
+  "notification": "Pranešimas"
 }
