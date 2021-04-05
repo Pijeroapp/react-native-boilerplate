@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { View } from 'react-native';
+
 import Form from '../components/Form';
-import { styles } from '../styles';
+import ThemedContainer from '../components/ThemedContainer';
 
 export const TodoFormScreen = () => {
   return (
-    <View style={styles.containerCentered} testID="todo-form-screen">
+    <ThemedContainer testID="todo-form-screen">
       <Form />
-    </View>
+    </ThemedContainer>
   );
 };

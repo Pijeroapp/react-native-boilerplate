@@ -9,6 +9,7 @@ import {
   Switch,
   Text,
   Button,
+  useColorScheme,
 } from 'react-native';
 import { useMutation, useQueryClient } from 'react-query';
 
@@ -16,6 +17,25 @@ import { colors } from '../styles';
 import { addTodo } from '../api/mutations/todo.mutation';
 
 const Form = () => {
+  const theme = useColorScheme();
+
+  const styles = StyleSheet.create({
+    input: {
+      width: 200,
+      height: 40,
+      margin: 12,
+      padding: 8,
+      borderWidth: 1,
+      borderColor: theme === 'light' ? colors.dark : colors.light,
+      color: theme === 'light' ? colors.dark : colors.light,
+    },
+    checkboxContainer: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+  });
+
   const [title, setTitle] = useState('');
   const [isFinished, setIsFinished] = useState(false);
   const toggleSwitch = () => setIsFinished((previousState) => !previousState);
@@ -39,6 +59,7 @@ const Form = () => {
     <View>
       <TextInput
         style={styles.input}
+        placeholderTextColor={theme === 'light' ? colors.dark : colors.light}
         onChangeText={setTitle}
         value={title}
         placeholder={i18n.t('todoTitle', { defaultValue: 'Todo title' })}
@@ -68,20 +89,5 @@ const Form = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  input: {
-    width: 200,
-    height: 40,
-    margin: 12,
-    padding: 8,
-    borderWidth: 1,
-  },
-  checkboxContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default Form;

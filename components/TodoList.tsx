@@ -1,13 +1,22 @@
 import * as React from 'react';
-import { Text } from 'react-native';
+import { Text, useColorScheme, StyleSheet } from 'react-native';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import i18n from 'i18n-js';
 
 import { removeTodo } from '../api/mutations/todo.mutation';
 import { getTodos } from '../api/queries/todos.query';
 import { Todo } from '../models';
+import { colors } from '../styles';
 
 const TodoList = () => {
+  const theme = useColorScheme();
+
+  const styles = StyleSheet.create({
+    text: {
+      color: theme === 'light' ? colors.dark : colors.light,
+    },
+  });
+
   const queryClient = useQueryClient();
 
   const formMutation = useMutation(removeTodo, {
@@ -36,9 +45,15 @@ const TodoList = () => {
   if (data) {
     return (
       <>
-        <Text>{i18n.t('todoList', { defaultValue: 'Todo list' })}:</Text>
+        <Text style={styles.text}>
+          {i18n.t('todoList', { defaultValue: 'Todo list' })}:
+        </Text>
         {data?.map((todo: Todo) => (
-          <Text key={todo.id} onPress={() => handleClick(todo)}>
+          <Text
+            style={styles.text}
+            key={todo.id}
+            onPress={() => handleClick(todo)}
+          >
             {todo.title}
           </Text>
         ))}

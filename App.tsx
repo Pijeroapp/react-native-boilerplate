@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { useColorScheme } from 'react-native';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
@@ -31,6 +32,8 @@ const queryClient = new QueryClient();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  const colorScheme = useColorScheme();
+
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
@@ -53,7 +56,11 @@ export default function App() {
           })}
           tabBarOptions={{
             activeTintColor: colors.primary.default,
-            inactiveTintColor: 'gray',
+            inactiveTintColor: colors.gray,
+            style: {
+              backgroundColor:
+                colorScheme === 'light' ? colors.light : colors.dark,
+            },
           }}
         >
           <Tab.Screen

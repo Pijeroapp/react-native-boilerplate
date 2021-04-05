@@ -1,3 +1,19 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "id": "25bb16bc-832b-432e-b5f5-f91f83ca992d",
+      "title": "take out trash",
+      "isFinished": false
+    },
+    {
+      "id": "f1cdda35-be63-4f48-97e9-f907c19ed7dd",
+      "title": "buy groceries",
+      "isFinished": false
+    },
+    {
+      "id": "5996904f-af76-4e25-9aad-400a0b61943b",
+      "title": "fsdfds",
+      "isFinished": false
+    }
+  ]
 }

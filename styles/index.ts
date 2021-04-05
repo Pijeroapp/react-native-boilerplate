@@ -2,8 +2,9 @@ import { StyleSheet } from 'react-native';
 
 export const colors = {
   light: '#fff',
-  dark: '#000',
+  dark: '#111',
   primary: { default: '#7498F5', light: '#A5BDFA', dark: '#4274F3' },
+  gray: 'gray',
 };
 
 export const styles = StyleSheet.create({

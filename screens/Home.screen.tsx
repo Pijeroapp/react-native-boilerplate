@@ -1,13 +1,24 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { Text, useColorScheme, StyleSheet } from 'react-native';
 import i18n from 'i18n-js';
 
-import { styles } from '../styles';
+import { colors } from '../styles';
+import ThemedContainer from '../components/ThemedContainer';
 
 export const HomeScreen = () => {
+  const theme = useColorScheme();
+
+  const styles = StyleSheet.create({
+    text: {
+      color: theme === 'light' ? colors.dark : colors.light,
+    },
+  });
+
   return (
-    <View style={styles.containerCentered} data-test="home-screen">
-      <Text>{i18n.t('welcome', { defaultValue: 'Welcome' })}</Text>
-    </View>
+    <ThemedContainer>
+      <Text style={styles.text}>
+        {i18n.t('welcome', { defaultValue: 'Welcome' })}
+      </Text>
+    </ThemedContainer>
   );
 };
